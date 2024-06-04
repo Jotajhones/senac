@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/style/style.css">
+    <link rel="stylesheet" href="assets/style/produtos.css">
+    <link rel="shortcut icon" href="assets/images/icons/favicon.png" type="image/x-icon">
+    <title>Loja - produtos</title>
+</head>
+
+<body>
+    <!-- Cabeçalho -->
+
+    <header>
+        <nav>
+            <a id="logo_aguia" href="index.html"><img src="assets/images/logo/Clothing Store (1).png"
+                    alt="logo_aguia"></a>
+            <div class="nav-principal">
+                <ul>
+                    <li class="dropdown"><a href="index.html">Home</a></li>
+                    <li class="dropdown"><a href="produtos_homens.html">Men's</a></li>
+                    <li class="dropdown"><a href="produtos_womans.html">Women's</a></li>
+                    <li class="dropdown"><a href="produtos_kids.html">Kid's</a></li>
+                    <li class="dropdown">
+                        <a href="#">Pages <img src="assets/images/icons/verificar.png" id="mark"></a>
+                        <div class="dropdown-menu">
+                            <a href="#">About Us</a>
+                            <a href="produtos.html">Products</a>
+                            <a href="#">Single Product</a>
+                            <a href="#">Contact Us</a>
+                        </div>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#">Features <img src="assets/images/icons/verificar.png" id="mark"></a>
+                        <div class="dropdown-menu">
+                            <a href="#">Feature 1</a>
+                            <a href="#">Feature 1</a>
+                            <a href="#">Feature 1</a>
+                            <a href="#">Template page 4</a>
+                        </div>
+                    </li>
+                    <li class="dropdown"><a href="#">Explore</a></li>
+                </ul>
+            </div>
+
+            <div class="mobile-icon">
+                <button onclick="trocarIcon()"><img src="assets/images/icons/menu-hamburguer.png" alt=""
+                        class="icon"></button>
+            </div>
+        </nav>
+
+        <div class="mobile-menu">
+            <ul>
+                <li class="nav-item"><a href="index.html">Home</a></li>
+                <li class="nav-item"><a href="produtos.html">Produtos</a></li>
+                <li class="nav-item"><a href="produtos_homens.html">Men's</a></li>
+                <li class="nav-item"><a href="produtos_womans.html">Women's</a></li>
+                <li class="nav-item"><a href="produtos_kids.html">Kid's</a></li>
+                <li class="nav-item"><a href="#">Explore</a></li>
+            </ul>
+
+        </div>
+    </header>
+
+    <main id="loja">
+
+        <h1 id="kid">Kid's</h1>
+
+        <!-- botoes interativos -->
+
+        <div class="div-icones" id="div-icones">
+            <div class="icones" onclick="comprar()">
+                <img src="assets/images/icons/shopping-cart1.png" alt="">
+            </div>
+            <div class="icones" onclick="favoritos()">
+                <img src="assets/images/icons/estrela(1).png" alt="">
+            </div>
+            <div class="icones" onclick="procurar()">
+                <img src="assets/images/icons/procurar.png" alt="">
+            </div>
+        </div>
+
+    </main>
+
+    <div class="footer_container">
+        <div class="row_footer">
+            <div class="coluna1">
+                <img src="./assets/images/logo/Clothing Store (1).png" alt="" class="logo_aguia_footer">
+                <div class="icons_redondo">
+                    <a href=""><img src="assets/images/icons/gmail.png" alt=""></a>
+                    <a href=""><img src="assets/images/icons/instagram.png" alt=""></a>
+                    <a href=""><img src="assets/images/icons/whatsappRedondo.png" alt=""></a>
+                    <a href=""><img src="assets/images/icons/youtube.png" alt=""></a>
+                </div>
+            </div>
+            <div class="coluna2">
+                <div class="contatos">
+                    <h2>Contatos</h2>
+                    <p class="centralizar"><img src="assets/images/icons/whatsappRedondo.png" alt="">(61) 99999-9999</p>
+                    <p class="centralizar"><img src="assets/images/icons/telefone-velho.png" alt="">(61) 3369-3369</p>
+                    <p class="centralizar"><img src="assets/images/icons/gmail.png" alt="">ecommerce@gmail.com</p>
+                    <p class="centralizar"><img src="assets/images/icons/gmail.png" alt="">suporte@gmail.com</p>
+                </div>
+                <div class="categotias">
+                    <h2>Categorias</h2>
+                    <a href="index.html">Home</a>
+                    <a href="produtos.html">Produtos</a>
+                    <a href="produtos_kids.html">Sessão Kid</a>
+                    <a href="produtos_homens.html">Sessão Homem</a>
+                    <a href="produtos_womans.html">Sessão Mulher</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/script/produtoScript.js"></script>
+    <script src="assets/script/icons.js"></script>
+</body>
+
+</html>

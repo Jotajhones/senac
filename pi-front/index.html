@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/style/style.css">
+    <link rel="shortcut icon" href="assets/images/icons/favicon.png" type="image/x-icon">
+    <title>Loja online</title>
+</head>
+
+<body>
+    <!-- Cabeçalho -->
+    <header>
+        <nav>
+            <a id="logo_aguia" href="index.html"><img src="assets/images/logo/Clothing Store (1).png"
+                    alt="logo_aguia"></a>
+            <div class="nav-principal">
+                <ul>
+                    <li class="dropdown"><a href="index.html">Home</a></li>
+                    <li class="dropdown"><a href="produtos_homens.html">Men's</a></li>
+                    <li class="dropdown"><a href="produtos_womans.html">Women's</a></li>
+                    <li class="dropdown"><a href="produtos_kids.html">Kid's</a></li>
+                    <li class="dropdown">
+                        <a href="#">Pages <img src="assets/images/icons/verificar.png" id="mark"></a>
+                        <div class="dropdown-menu">
+                            <a href="#">About Us</a>
+                            <a href="#">Products</a>
+                            <a href="#">Single Product</a>
+                            <a href="#">Contact Us</a>
+                        </div>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#">Features <img src="assets/images/icons/verificar.png" id="mark"></a>
+                        <div class="dropdown-menu">
+                            <a href="#">Feature 1</a>
+                            <a href="#">Feature 1</a>
+                            <a href="#">Feature 1</a>
+                            <a href="#">Template page 4</a>
+                        </div>
+                    </li>
+                    <li class="dropdown"><a href="#">Explore</a></li>
+                </ul>
+            </div>
+
+            <div class="mobile-icon">
+                <button onclick="trocarIcon()"><img src="assets/images/icons/menu-hamburguer.png" alt=""
+                        class="icon"></button>
+            </div>
+        </nav>
+
+        <div class="mobile-menu">
+            <ul>
+                <li class="nav-item"><a href="index.html">Home</a></li>
+                <li class="nav-item"><a href="#">Produtos</a></li>
+                <li class="nav-item"><a href="produtos_homens.html">Men's</a></li>
+                <li class="nav-item"><a href="produtos_womans.html">Women's</a></li>
+                <li class="nav-item"><a href="produtos_kids.html">Kid's</a></li>
+                <li class="nav-item"><a href="#">Explore</a></li>
+            </ul>
+
+        </div>
+    </header>
+
+    <!-- Seção principal -->
+    <section class="section-fotos">
+        <div class="container-fotos">
+            <h1 id="titulo_foto1">We Are Royal Eagle</h1>
+            <h3 id="titulo_foto_h3">Elevate Your Wardrobe with Our Fashion Finds</h3>
+            <button id="botao"><a href="./produtos.html">Purchase Now!</a></button>
+            <img src="assets/images/index/left-banner-image.jpg" class="foto_grande">
+            <div class="fotos_pequenas">
+                <img src="assets/images/index/baner-right-image-01.jpg" class="foto_pequena">
+                <img src="assets/images/index/baner-right-image-02.jpg" class="foto_pequena">
+                <img src="assets/images/index/baner-right-image-03.jpg" class="foto_pequena">
+                <img src="assets/images/index/baner-right-image-04.jpg" class="foto_pequena">
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção Men's -->
+    <div id="linha"></div>
+
+    <div id="title_man_container">
+        <h2 id="man_title_sector">Men's Latest</h2>
+        <span id="man_subtitle_sector">Details to details is what makes Royal Eagle different from the other
+            themes.</span>
+    </div>
+    <div class="slider">
+        <div class="slides">
+            <input type="radio" name="radio-btn" id="radio1">
+            <input type="radio" name="radio-btn" id="radio2">
+            <input type="radio" name="radio-btn" id="radio3">
+            <input type="radio" name="radio-btn" id="radio4">
+            <div class="slide first">
+                <img src="./assets/images/team-member-02.jpg" alt="">
+                <div class="title_fotos_carrossel">
+                    <h4>Classic Spring</h4>
+                    <span>★★★★★</span>
+                    <span>$120,00</span>
+                </div>
+            </div>
+            <div class="slide ">
+                <img src="./assets/images/men-02.jpg" alt="">
+                <div class="title_fotos_carrossel">
+                    <h4>Air Force 1 X</h4>
+                    <span>★★★★★</span>
+                    <span>$90,00</span>
+                </div>
+            </div>
+            <div class="slide ">
+                <img src="./assets/images/men-03.jpg" alt="">
+                <div class="title_fotos_carrossel">
+                    <h4>Love Nana '20</h4>
+                    <span>★★★★★</span>
+                    <span>$150,00</span>
+                </div>
+            </div>
+            <div class="slide ">
+                <img src="./assets/images/team-member-03.jpg" alt="">
+                <div class="title_fotos_carrossel">
+                    <h4>Love Nana '20</h4>
+                    <span>★★★★★</span>
+                    <span>$150,00</span>
+                </div>
+            </div>
+            <div class="navigation-auto">
+                <div class="auto-btn1"></div>
+                <div class="auto-btn2"></div>
+                <div class="auto-btn3"></div>
+                <div class="auto-btn4"></div>
+            </div>
+        </div>
+
+        <div class="manual-navigation">
+            <label for="radio1" class="manual-btn"></label>
+            <label for="radio2" class="manual-btn"></label>
+            <label for="radio3" class="manual-btn"></label>
+            <label for="radio4" class="manual-btn"></label>
+        </div>
+    </div>
+
+    <!-- Seção Women's -->
+
+    <div id="linha_m"></div>
+
+    <div id="title_woman_container">
+        <h2 id="woman_title_sector">Women's Latest</h2>
+        <span id="woman_subtitle_sector">Details to details is what makes Royal Eagle different from the other
+            themes.</span>
+    </div>
+    <div class="slider-m">
+        <div class="slides-m">
+            <input type="radio" name="mradio-btn" id="mradio1">
+            <input type="radio" name="mradio-btn" id="mradio2">
+            <input type="radio" name="mradio-btn" id="mradio3">
+            <input type="radio" name="mradio-btn" id="mradio4">
+            <div class="slide-m first-m">
+                <img src="./assets/images/women-01.jpg" alt="">
+                <div class="title_fotos_carrossel-m">
+                    <h4>Classic Spring</h4>
+                    <span>★★★★★</span>
+                    <span>$120,00</span>
+                </div>
+            </div>
+            <div class="slide-m ">
+                <img src="./assets/images/women-02.jpg" alt="">
+                <div class="title_fotos_carrossel-m">
+                    <h4>Air Force 1 X</h4>
+                    <span>★★★★★</span>
+                    <span>$90,00</span>
+                </div>
+            </div>
+            <div class="slide-m">
+                <img src="./assets/images/women-03.jpg" alt="">
+                <div class="title_fotos_carrossel-m">
+                    <h4>Love Nana '20</h4>
+                    <span>★★★★★</span>
+                    <span>$150,00</span>
+                </div>
+            </div>
+            <div class="slide-m">
+                <img src="./assets/images/team-member-01.jpg" alt="">
+                <div class="title_fotos_carrossel-m">
+                    <h4>Love Nana '20</h4>
+                    <span>★★★★★</span>
+                    <span>$150,00</span>
+                </div>
+            </div>
+            <div class="navigation-auto-m">
+                <div class="auto-btn1-m"></div>
+                <div class="auto-btn2-m"></div>
+                <div class="auto-btn3-m"></div>
+                <div class="auto-btn4-m"></div>
+            </div>
+        </div>
+
+        <div class="manual-navigation-m">
+            <label for="mradio1" class="manual-btn-m"></label>
+            <label for="mradio2" class="manual-btn-m"></label>
+            <label for="mradio3" class="manual-btn-m"></label>
+            <label for="mradio4" class="manual-btn-m"></label>
+        </div>
+    </div>
+
+    <!-- Seção Kid's -->
+
+    <div id="linha_k"></div>
+
+    <div id="title_kids_container">
+        <h2 id="kids_title_sector">Kid's Latest</h2>
+        <span id="kids_subtitle_sector">Details to details is what makes Royal Eagle different from the other
+            themes.</span>
+    </div>
+    <div class="slider-k">
+        <div class="slides-k">
+            <input type="radio" name="kradio-btn" id="kradio1">
+            <input type="radio" name="kradio-btn" id="kradio2">
+            <input type="radio" name="kradio-btn" id="kradio3">
+            <input type="radio" name="kradio-btn" id="kradio4">
+            <div class="slide-k first-k">
+                <img src="./assets/images/kid-01.jpg" alt="">
+                <div class="title_fotos_carrossel-k">
+                    <h4>Classic Spring</h4>
+                    <span>★★★★★</span>
+                    <span>$120,00</span>
+                </div>
+            </div>
+            <div class="slide-k ">
+                <img src="./assets/images/kid-02.jpg" alt="">
+                <div class="title_fotos_carrossel-k">
+                    <h4>Air Force 1 X</h4>
+                    <span>★★★★★</span>
+                    <span>$90,00</span>
+                </div>
+            </div>
+            <div class="slide-k">
+                <img src="./assets/images/kid-03.jpg" alt="">
+                <div class="title_fotos_carrossel-k">
+                    <h4>Love Nana '20</h4>
+                    <span>★★★★★</span>
+                    <span>$150,00</span>
+                </div>
+            </div>
+            <div class="slide-k">
+                <img src="./assets/images/kid-02.jpg" alt="">
+                <div class="title_fotos_carrossel-k">
+                    <h4>Love Nana '20</h4>
+                    <span>★★★★★</span>
+                    <span>$150,00</span>
+                </div>
+            </div>
+
+            <div class="navigation-auto-k">
+                <div class="auto-btn1-k"></div>
+                <div class="auto-btn2-k"></div>
+                <div class="auto-btn3-k"></div>
+                <div class="auto-btn4-k"></div>
+            </div>
+
+        </div>
+
+        <div class="manual-navigation-k">
+            <label for="kradio1" class="manual-btn-k"></label>
+            <label for="kradio2" class="manual-btn-k"></label>
+            <label for="kradio3" class="manual-btn-k"></label>
+            <label for="kradio4" class="manual-btn-k"></label>
+        </div>
+    </div>
+
+    <div class="footer_container">
+        <div class="row_footer">
+            <div class="coluna1">
+                <img src="./assets/images/logo/Clothing Store (1).png" alt="" class="logo_aguia_footer">
+                <div class="icons_redondo">
+                    <a href=""><img src="assets/images/icons/gmail.png" alt=""></a>
+                    <a href=""><img src="assets/images/icons/instagram.png" alt=""></a>
+                    <a href=""><img src="assets/images/icons/whatsappRedondo.png" alt=""></a>
+                    <a href=""><img src="assets/images/icons/youtube.png" alt=""></a>
+                </div>
+            </div>
+            <div class="coluna2">
+                <div class="contatos">
+                    <h2>Contatos</h2>
+                    <p class="centralizar"><img src="assets/images/icons/whatsappRedondo.png" alt="">(61) 99999-9999</p>
+                    <p class="centralizar"><img src="assets/images/icons/telefone-velho.png" alt="">(61) 3369-3369</p>
+                    <p class="centralizar"><img src="assets/images/icons/gmail.png" alt="">ecommerce@gmail.com</p>
+                    <p class="centralizar"><img src="assets/images/icons/gmail.png" alt="">suporte@gmail.com</p>
+                </div>
+                <div class="categotias">
+                    <h2>Categorias</h2>
+                    <a href="index.html">Home</a>
+                    <a href="produtos.html">Produtos</a>
+                    <a href="produtos_kids.html">Sessão Kid</a>
+                    <a href="produtos_homens.html">Sessão Homem</a>
+                    <a href="produtos_womans.html">Sessão Mulher</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/script/script.js"></script>
+    <script src="assets/script/icons.js"></script>
+</body>
+
+</html>
