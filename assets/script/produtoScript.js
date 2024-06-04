@@ -6,7 +6,7 @@ async function requisicaoDB() {
 
     pegarDoStorage()
 
-    const produtos = await fetch('http://localhost:3000/api/produtos');
+    const produtos = await fetch('https://senac-back.azurewebsites.net/api/produtoss');
     const todosProdutos = await produtos.json();
 
     // atualizarCarrrinho(todosProdutos)
@@ -121,7 +121,7 @@ function favicon(btn, id, todosProdutos) {
 
 async function procurar() {
 
-    const produtos = await fetch('http://localhost:3000/api/produtos');
+    const produtos = await fetch('https://senac-back.azurewebsites.net/api/produtoss');
     const todosProdutos = await produtos.json();
 
     //Capturando elementos para manipulacao
@@ -316,7 +316,7 @@ function comprar() {
 async function favoritos() {
 
     //funcao para limpar a tela e exibir os favoritos, caso exitam favoritos.
-    const produtos = await fetch('http://localhost:3000/api/produtos');
+    const produtos = await fetch('https://senac-back.azurewebsites.net/api/produtoss');
     const todosProdutos = await produtos.json();
 
     let linha;
