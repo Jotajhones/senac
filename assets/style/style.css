@@ -881,7 +881,7 @@ nav li a:hover {
     position: relative;
     bottom: 0;
     left: 0;
-    max-height: 1140px;
+    max-height: fit-content;
     height: 390px;
     color: white;
 }
