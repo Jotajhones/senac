@@ -2,6 +2,8 @@
 let cart = [];
 let fav = [];
 
+//comentario generico
+
 async function requisicaoDB() {
 
     pegarDoStorage()
