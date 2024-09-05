@@ -13,11 +13,15 @@ async function requisicaoDB() {
 
     // atualizarCarrrinho(todosProdutos)
     //Pegando elementos DOM necessarios para manipular o conteudo
-    let linha;
-    const main = document.getElementById('loja');
-    const mainTitle = document.getElementsByTagName("h1");
+    // let linha;
+    let main = document.getElementById('loja');
+    let mainTitle = document.querySelector("h1");
 
-    addProdutos(todosProdutos, main, linha, mainTitle);
+
+    for(let a = 0; a <todosProdutos.length; a++){
+        console.log(todosProdutos[a].nome)
+        addProdutos(todosProdutos[a], main, mainTitle, a);
+    }
 
     atualizarCart();
     atualizarFav();
@@ -201,7 +205,7 @@ async function procurar() {
 
                         if (count1 % 2 != 0) {
                             linha = document.createElement('div');
-                            linha.classList.add('linha');                    
+                            linha.classList.add('linha');
                         }
                         count1++
 
@@ -351,7 +355,7 @@ async function favoritos() {
 
                 if (count % 2 != 0) {
                     linha = document.createElement('div');
-                    linha.classList.add('linha');                    
+                    linha.classList.add('linha');
                 }
                 count++
 
@@ -510,21 +514,26 @@ function divBotoes(main) {
     });
 }
 
-function addProdutos(todosProdutos, main, linha, mainTitle) {
-    for (let i = 0; i < todosProdutos.length; i++) {
+function addProdutos(todosProdutos, main, mainTitle, a) {
+    // for (let i = 0; i < todosProdutos.length; i++) {
+        if (todosProdutos) {
+            console.log(true);
+        } else {
+            console.log(false);
+        }
 
-        if (todosProdutos[i].secao == mainTitle[0].id) {
+        if (todosProdutos.secao == mainTitle.id) {
 
-            if (todosProdutos[i].id % 2 != 0) {
-                linha = document.createElement('div');
-                linha.classList.add('linha');
-            }
+            // if (todosProdutos.id % 2 != 0) {
+            //     linha = document.createElement('div');
+            //     linha.classList.add('linha');
+            // }
 
-            let id = todosProdutos[i].id - 1;
-            let nome = todosProdutos[i].nome;
-            let preco = todosProdutos[i].preco;
-            let imagem = todosProdutos[i].imagem;
-            let descricaoProd = todosProdutos[i].descricao;
+            let id = todosProdutos.id;
+            let nome = todosProdutos.nome;
+            let preco = todosProdutos.preco;
+            let imagem = todosProdutos.imagem;
+            let descricaoProd = todosProdutos.descricao;
 
             const produtoCard = document.createElement('div');
             produtoCard.classList.add('produtos');
@@ -546,7 +555,7 @@ function addProdutos(todosProdutos, main, linha, mainTitle) {
             valor.classList.add('preco');
             valor.innerHTML = `R$ ${preco.toFixed(2)}`
             valor.id = `preco${id}`
-            main.appendChild(linha);
+            // main.appendChild(linha);
 
             const botoes = document.createElement('div');
             botoes.classList.add('botoes');
@@ -572,16 +581,16 @@ function addProdutos(todosProdutos, main, linha, mainTitle) {
             const compra = document.createElement('img');
             const btn3 = document.createElement('button');
             btn3.classList.add('botao');
-            btn3.id = `descricao${i}`;
+            btn3.id = `descricao${a}`;
             compra.src = 'assets/images/icons/descricao-alternativa.png';
-            descricao(btn3, todosProdutos[i].nome, imagem, descricaoProd, preco, id, todosProdutos[i].id, todosProdutos);
+            descricao(btn3, todosProdutos.nome, imagem, descricaoProd, preco, id, todosProdutos.id, todosProdutos);
             btn3.appendChild(compra);
 
             botoes.appendChild(btn2);
             botoes.appendChild(btn1);
             botoes.appendChild(btn3);
 
-            linha.appendChild(produtoCard);
+            main.appendChild(produtoCard);
             produtoCard.appendChild(produtoFoto);
             produtoCard.appendChild(titulo);
             produtoCard.appendChild(estrela)
@@ -589,7 +598,7 @@ function addProdutos(todosProdutos, main, linha, mainTitle) {
             produtoCard.appendChild(botoes);
         }
     }
-}
+// }
 
 // salvar no localStorage
 function salvarStorage() {
