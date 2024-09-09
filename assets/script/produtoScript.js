@@ -2,8 +2,6 @@
 let cart = [];
 let fav = [];
 
-//comentario generico
-
 async function requisicaoDB() {
 
     pegarDoStorage()
@@ -28,10 +26,10 @@ function pegarDoStorage() {
     const cartStorage = localStorage.getItem("cart");
     if (cartStorage) {
         cart = JSON.parse(cartStorage);
-        contador()
+        contador();
     }
 
-    const favStorage = localStorage.getItem("favoritos");
+    const favStorage = localStorage.getItem("favoritosLojinha");
     if (favStorage) {
         fav = JSON.parse(favStorage);
     }
@@ -63,11 +61,11 @@ function buttonClick(btn, id, todosProdutos) {
             for (let i = 0; i < cart.length; i++) {
                 if (cart[i].id == (event.target.id)) {
                     cart.splice(i, 1);
-                    salvarStorage()
+                    salvarStorage();
                 }
             }
         }
-        contador()
+        contador();
     });
 }
 
@@ -148,7 +146,7 @@ async function procurar() {
     botaoBuscar.innerHTML = "";
 
     botaoBuscar.classList.add('botao-buscar')
-    botaoBuscar.innerHTML = 'Buscar'
+    botaoBuscar.innerHTML = 'Buscar';
 
     divInput.appendChild(input);
     divInput.appendChild(botaoBuscar);
@@ -164,7 +162,7 @@ async function procurar() {
         } else if (input.value.length != 0) {
 
             const main = document.getElementById('loja');
-            let count = 0
+            let count = 0;
             for (let i = 0; i < todosProdutos.length; i++) {
 
                 //condicao logia para pesquisa pelo input.
@@ -174,7 +172,6 @@ async function procurar() {
                     let inputTeste = input.value.toUpperCase();
 
                     if (NomeTeste.includes(inputTeste)) {
-
                         count++
                         //caso sejam encontrados produtos é executada uma funcao para limpar a tela
                         limparLinha();
@@ -190,7 +187,6 @@ async function procurar() {
             let count1 = 1
 
             for (let i = 0; i < todosProdutos.length; i++) {
-
                 if (todosProdutos[i].secao == mainTitle.id) {
 
                     let NomeTeste = (todosProdutos[i].nome).toUpperCase();
@@ -198,8 +194,7 @@ async function procurar() {
 
                     if (NomeTeste.includes(inputTeste)) {
 
-                        count1++
-
+                        count1++;
                         addProdutos(todosProdutos[i], main, mainTitle, i);
                         atualizarCart();
                         atualizarFav();
@@ -211,11 +206,12 @@ async function procurar() {
 }
 
 function comprar() {
+     // esta funcao limpa a tela e mostra uma tabela com todos os produtos na array cart
 
     if (cart.length == 0) {
         alert("Seu carrinho de compras está vazio.")
     } else {
-        // esta funcao limpa a tela e mostra uma tabela com todos os produtos na array cart
+       
         const main = document.getElementById('loja');
         main.innerHTML = "";
         const table = document.createElement('table');
@@ -261,15 +257,14 @@ async function favoritos() {
     const mainTitle = document.querySelector("h1");
 
     if (fav.length == 0) {
-        alert("Seu Favoritos está vazio.")
+        alert("Seu Favoritos está vazio.");
     }
 
 
     for (let i = 0; i < fav.length; i++) {
-
         for (let c = 0; c < todosProdutos.length; c++) {
-
             if (fav[i].nome == todosProdutos[c].nome && fav[i].preco == todosProdutos[c].preco) {
+
                 limparLinha();
                 mainTitle.innerHTML = "Favoritos";
                 let h1 = document.createElement('h1');
@@ -279,17 +274,11 @@ async function favoritos() {
         }
     }
 
-    let count = 1;
-
     for (let i = 0; i < fav.length; i++) {
-
         for (let c = 0; c < todosProdutos.length; c++) {
-
             if (fav[i].nome == todosProdutos[c].nome && fav[i].preco == todosProdutos[c].preco) {
 
-                count++
-
-                somenteCard(todosProdutos[c], main, mainTitle, c)
+                somenteCard(todosProdutos[c], main, mainTitle, c);
             }
         }
     }
@@ -297,24 +286,24 @@ async function favoritos() {
     atualizarFav();
 }
 
-function descricao(btn, titulo, imagem, descricao, preco, id) {
+function descricao(btn, titulo, imagem, descricao, preco, id, todosProdutos) {
 
     //funcao para exibir a descricao do produto
     btn.addEventListener('click', () => {
 
         const main = document.getElementById('loja');
-        const mainTitle = document.querySelector("h1");
+        const mainTitle = document.querySelector("h2");
 
-       
         limparLinha();
-        mainTitle.innerHTML = titulo;
-        main.appendChild(mainTitle)
+
+        mainTitle.innerText = titulo;
+        main.appendChild(mainTitle);
 
         const produtoCard = document.createElement('div');
         produtoCard.classList.add('produtos');
 
         const produtoFoto = document.createElement('img');
-        produtoFoto.classList.add('imgProduto')
+        produtoFoto.classList.add('imgProduto');
         produtoFoto.src = imagem;
         produtoFoto.id = `imagem${id}`;
 
@@ -323,18 +312,37 @@ function descricao(btn, titulo, imagem, descricao, preco, id) {
 
         const valor = document.createElement('p');
         valor.classList.add('preco');
-        valor.innerHTML = `R$ ${preco.toFixed(2)}`
-        valor.id = `preco${id}`
+        valor.innerHTML = `R$ ${preco.toFixed(2)}`;
+        valor.id = `preco${id}`;
         // main.appendChild(linha);
 
         const botoes = document.createElement('div');
         botoes.classList.add('botoes');
 
-      
         produtoCard.appendChild(produtoFoto);
 
-
         produtoCard.appendChild(descricaoF);
+        produtoCard.appendChild(botoes);
+
+        const favoritos = document.createElement('img');
+        const btn1 = document.createElement('button');
+        btn1.classList.add('botao');
+        favoritos.src = 'assets/images/icons/estrela.png';
+        favoritos.id = `favoritos${id}`
+        btn1.appendChild(favoritos);
+        favicon(btn1, id, todosProdutos);
+
+        const carrinho = document.createElement('img');
+        const btn2 = document.createElement('button');
+        btn2.classList.add('botao');
+        carrinho.src = 'assets/images/icons/shopping-cart.png';
+        carrinho.id = `carrinho${id}`;
+        btn2.id = `botao${id}`;
+        btn2.appendChild(carrinho);
+        buttonClick(btn2, id, todosProdutos);
+
+        botoes.appendChild(btn2);
+        botoes.appendChild(btn1);
         produtoCard.appendChild(botoes);
 
         let divTable = document.createElement('div');
@@ -348,35 +356,42 @@ function descricao(btn, titulo, imagem, descricao, preco, id) {
         window.scrollTo({
             top: 0,
             transition: '0.8s'
-        })
+        });
+
+        atualizarCart();
+        atualizarFav();
     });
 }
 
 function limparLinha() {
+
+    //limpa todo conteudo da tag main
     let limparLinha = document.getElementById('loja');
-    limparLinha.innerHTML = ""
+    limparLinha.innerHTML = "";
 }
 
 
 function divBotoes(main) {
+
+    //div fixa, botoes de busca fav e cart
     const divBotoes = document.createElement("div");
     divBotoes.classList.add('divBotoes');
 
     const botaoComprar = document.createElement("div");
-    botaoComprar.innerHTML = 'Comprar'
+    botaoComprar.innerHTML = 'Comprar';
     botaoComprar.classList.add('botoesCarrinho');
-    divBotoes.appendChild(botaoComprar)
+    divBotoes.appendChild(botaoComprar);
 
     const botaoVoltar = document.createElement("div");
-    botaoVoltar.innerHTML = 'Voltar'
+    botaoVoltar.innerHTML = 'Voltar';
     botaoVoltar.classList.add('botoesCarrinho');
     divBotoes.appendChild(botaoVoltar);
 
     main.appendChild(divBotoes);
 
     botaoComprar.addEventListener('click', () => {
-        alert("Compra realizada com sucesso.")
-        localStorage.removeItem('cart')
+        alert("Compra realizada com sucesso.");
+        localStorage.removeItem('cart');
         // localStorage.removeItem('favoritos');
         window.location.reload();
     })
@@ -387,24 +402,25 @@ function divBotoes(main) {
 }
 
 function addProdutos(todosProdutos, main, mainTitle, a) {
-
+    //Adicionar produtos a taga MAIN
     if (todosProdutos.secao == mainTitle.id) {
-
-        somenteCard(todosProdutos, main, mainTitle, a)
-
+        somenteCard(todosProdutos, main, mainTitle, a);
     }
 }
 
 
 // salvar no localStorage
 function salvarStorage() {
+
+    //criar variaveis no localstorage cart e favoritolojinha
     localStorage.setItem('cart', JSON.stringify(cart));
-    localStorage.setItem('favoritos', JSON.stringify(fav));
+    localStorage.setItem('favoritosLojinha', JSON.stringify(fav));
 }
 
 function atualizarCart() {
     for (let i = 0; i < cart.length; i++) {
 
+        //Atualiza a imagem do carrinho, caso ele ja tenha sido adiconado ao carrinho.
         if (document.getElementById(cart[i].id)) {
             const imgCarrinho = document.getElementById(cart[i].id);
             imgCarrinho.src = 'assets/images/icons/shopping-cart1.png';
@@ -413,6 +429,8 @@ function atualizarCart() {
 };
 
 function atualizarFav() {
+
+    //Atualiza as imagens dos favoritos caso o produto ja esteja nos favoritos.
     for (let i = 0; i < fav.length; i++) {
 
         if (document.getElementById(fav[i].id)) {
@@ -423,6 +441,8 @@ function atualizarFav() {
 };
 
 function somenteCard(todosProdutos, main, mainTitle, a) {
+
+    // Estrutura do card de produtos.
     let id = todosProdutos.id;
     let nome = todosProdutos.nome;
     let preco = todosProdutos.preco;
@@ -433,22 +453,22 @@ function somenteCard(todosProdutos, main, mainTitle, a) {
     produtoCard.classList.add('produtos');
 
     const produtoFoto = document.createElement('img');
-    produtoFoto.classList.add('imgProduto')
+    produtoFoto.classList.add('imgProduto');
     produtoFoto.src = imagem;
-    produtoFoto.id = `imagem${id}`
+    produtoFoto.id = `imagem${id}`;
 
     const titulo = document.createElement('p');
     titulo.classList.add('titulo');
     titulo.innerHTML = nome;
-    titulo.id = `nome${id}`
+    titulo.id = `nome${id}`;
 
     const estrela = document.createElement('p');
     estrela.innerHTML = '★★★★★';
 
     const valor = document.createElement('p');
     valor.classList.add('preco');
-    valor.innerHTML = `R$ ${preco.toFixed(2)}`
-    valor.id = `preco${id}`
+    valor.innerHTML = `R$ ${preco.toFixed(2)}`;
+    valor.id = `preco${id}`;
 
     const botoes = document.createElement('div');
     botoes.classList.add('botoes');
@@ -465,8 +485,8 @@ function somenteCard(todosProdutos, main, mainTitle, a) {
     const btn2 = document.createElement('button');
     btn2.classList.add('botao');
     carrinho.src = 'assets/images/icons/shopping-cart.png';
-    carrinho.id = `carrinho${id}`
-    btn2.id = `botao${id}`
+    carrinho.id = `carrinho${id}`;
+    btn2.id = `botao${id}`;
     btn2.appendChild(carrinho);
     buttonClick(btn2, id, todosProdutos);
 
@@ -492,4 +512,3 @@ function somenteCard(todosProdutos, main, mainTitle, a) {
 }
 
 window.onload = requisicaoDB;
-
