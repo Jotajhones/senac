@@ -7,12 +7,15 @@
 
 /* SECAO PRINCIPAL */
 main {
-    padding-top: 150px;
-    max-width: auto;
+    padding-top: 10px;
+    width: fit-content;
+    max-width: 1290px;
+    margin: auto;
     font-family: "Poppins", sans-serif;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
+    margin: auto;
     /* flex-direction: column;
     columns: 2; */
     /* position: relative; */
@@ -36,11 +39,8 @@ main h1 {
     }
 }
 
-@media(max-width:820px) {
-    .div-icones {
-        margin-bottom: 222px;
-    }
-}
+
+
 
 /* GRADE DE FOTOS */
 /* 
@@ -66,6 +66,7 @@ main h1 {
     margin: 10px;
     max-width: 350px;
     max-height: 700px;
+    border-radius: 8px;
 }
 
 .produtos img {
@@ -120,10 +121,8 @@ main h1 {
 /*Icones interativos*/
 
 .div-icones {
-    margin-left: 10%;
-    position: relative;
-    top: 150px;
-    left: 11%;
+    margin-left: 20%;
+    margin-top: 150px;
     display: inline-flex;
 }
 
@@ -156,9 +155,15 @@ main h1 {
     background-color: #81818156;
 }
 
-@media (max-width: 550px) {
+@media (max-width:820px) {
     .div-icones {
-        margin-left: 15%;
+        margin-top: 50px;
+    }
+}
+
+@media(max-width: 550px) {
+    .div-icones {
+        margin: 50px auto 20px auto;
     }
 }
 
@@ -195,8 +200,21 @@ main h1 {
 }
 
 /* TABELA de compra*/
+#divTable {
+    margin: 20px auto 50px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    flex-wrap: wrap;
+    width: 500px;
+    /* position: relative;
+    bottom: 500px;
+    right: -200px; */
+}
+
 table {
-    margin: 50px auto;
+    margin: 20px auto;
     background-color: white;
     border-radius: 10px;
     box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.300);
@@ -218,8 +236,12 @@ thead {
 .divBotoes {
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: space-around;
     margin: 15px;
+    width: 400px;
+    /* position: relative;
+    right: 50%;
+    top: 100px; */
 }
 
 .botoesCarrinho {

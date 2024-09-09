@@ -11,15 +11,12 @@ async function requisicaoDB() {
     const produtos = await fetch('https://senac-back.azurewebsites.net/api/produtos');
     const todosProdutos = await produtos.json();
 
-    // atualizarCarrrinho(todosProdutos)
-    //Pegando elementos DOM necessarios para manipular o conteudo
-    // let linha;
     let main = document.getElementById('loja');
     let mainTitle = document.querySelector("h1");
 
 
-    for(let a = 0; a <todosProdutos.length; a++){
-        console.log(todosProdutos[a].nome)
+    for (let a = 0; a < todosProdutos.length; a++) {
+
         addProdutos(todosProdutos[a], main, mainTitle, a);
     }
 
@@ -56,7 +53,6 @@ function buttonClick(btn, id, todosProdutos) {
         //condicao logica para alteracao da imagem do carrinho ao click
         if (carrinho.src.includes('assets/images/icons/shopping-cart.png')) {
             carrinho.src = 'assets/images/icons/shopping-cart1.png';
-
             //adiconando produtos ao carrinho.
             cart.push({ nome: todosProdutos.nome, preco: todosProdutos.preco, id: `carrinho${id}` });
             salvarStorage()
@@ -133,7 +129,7 @@ async function procurar() {
     //Capturando elementos para manipulacao
 
     const main = document.getElementById('loja');
-    const mainTitle = document.getElementsByTagName("h1");
+    const mainTitle = document.querySelector("h1");
     const divInput = document.createElement('div');
     divInput.classList.add('divInput');
     const limparDivInput = document.getElementsByClassName('divInput');
@@ -144,7 +140,6 @@ async function procurar() {
     }
 
     // criando a barra de busca e adiconando classe
-    let linha;
     let divIcone = document.getElementById('div-icones');
     let input = document.createElement('input');
 
@@ -173,7 +168,7 @@ async function procurar() {
             for (let i = 0; i < todosProdutos.length; i++) {
 
                 //condicao logia para pesquisa pelo input.
-                if (todosProdutos[i].secao == mainTitle[0].id) {
+                if (todosProdutos[i].secao == mainTitle.id) {
 
                     let NomeTeste = (todosProdutos[i].nome).toUpperCase();
                     let inputTeste = input.value.toUpperCase();
@@ -196,83 +191,16 @@ async function procurar() {
 
             for (let i = 0; i < todosProdutos.length; i++) {
 
-                if (todosProdutos[i].secao == mainTitle[0].id) {
+                if (todosProdutos[i].secao == mainTitle.id) {
 
                     let NomeTeste = (todosProdutos[i].nome).toUpperCase();
                     let inputTeste = input.value.toUpperCase();
 
                     if (NomeTeste.includes(inputTeste)) {
 
-                        if (count1 % 2 != 0) {
-                            linha = document.createElement('div');
-                            linha.classList.add('linha');
-                        }
                         count1++
 
-                        let id = todosProdutos[i].id - 1;
-                        let nome = todosProdutos[i].nome;
-                        let preco = todosProdutos[i].preco;
-                        let imagem = todosProdutos[i].imagem;
-                        let descricaoProd = todosProdutos[i].descricao;
-
-                        const produtoCard = document.createElement('div');
-                        produtoCard.classList.add('produtos');
-
-                        const produtoFoto = document.createElement('img');
-                        produtoFoto.classList.add('imgProduto')
-                        produtoFoto.src = imagem;
-                        produtoFoto.id = `imagem${id}`
-
-                        const titulo = document.createElement('p');
-                        titulo.classList.add('titulo');
-                        titulo.innerHTML = nome;
-                        titulo.id = `nome${id}`
-
-                        const estrela = document.createElement('p');
-                        estrela.innerHTML = '★★★★★';
-
-                        const valor = document.createElement('p');
-                        valor.classList.add('preco');
-                        valor.innerHTML = `R$ ${preco.toFixed(2)}`
-                        valor.id = `preco${id}`
-                        main.appendChild(linha);
-
-                        const botoes = document.createElement('div');
-                        botoes.classList.add('botoes');
-
-                        const favoritos = document.createElement('img');
-                        const btn1 = document.createElement('button');
-                        btn1.classList.add('botao');
-                        favoritos.src = 'assets/images/icons/estrela.png';
-                        favoritos.id = `favoritos${id}`
-                        btn1.appendChild(favoritos);
-                        favicon(btn1, id, todosProdutos[id]);
-
-                        const carrinho = document.createElement('img');
-                        const btn2 = document.createElement('button');
-                        btn2.classList.add('botao');
-                        carrinho.src = 'assets/images/icons/shopping-cart.png';
-                        carrinho.id = `carrinho${id}`
-                        btn2.appendChild(carrinho);
-                        buttonClick(btn2, id, todosProdutos[id]);
-
-                        const compra = document.createElement('img');
-                        const btn3 = document.createElement('button');
-                        btn3.classList.add('botao');
-                        compra.src = 'assets/images/icons/descricao-alternativa.png';
-                        descricao(btn3, todosProdutos[i].nome, imagem, descricaoProd, preco, id, todosProdutos[i].id, todosProdutos);
-                        btn3.appendChild(compra);
-
-                        botoes.appendChild(btn2);
-                        botoes.appendChild(btn1);
-                        botoes.appendChild(btn3);
-
-                        linha.appendChild(produtoCard);
-                        produtoCard.appendChild(produtoFoto);
-                        produtoCard.appendChild(titulo);
-                        produtoCard.appendChild(estrela)
-                        produtoCard.appendChild(valor);
-                        produtoCard.appendChild(botoes);
+                        addProdutos(todosProdutos[i], main, mainTitle, i);
                         atualizarCart();
                         atualizarFav();
                     }
@@ -296,7 +224,7 @@ function comprar() {
                                 <td>Produtos</td>
                                 <td>Valor</td>  
                             </tr>
-                        </thead>`
+                        </thead>`;
         let total = 0;
         for (let i = 0; i < cart.length; i++) {
             table.innerHTML += `<tbody>
@@ -304,7 +232,7 @@ function comprar() {
                                     <td>${cart[i].nome}</td>
                                     <td>R$ ${cart[i].preco.toFixed(2)}</td>
                                 </tr>
-                            </tbody>`
+                            </tbody>`;
             total = total + cart[i].preco;
         }
         table.innerHTML += `<tbody>
@@ -312,10 +240,14 @@ function comprar() {
                                 <td><strong>Total</strong></td>
                                 <td><strong>R$ ${total.toFixed(2)}</strong></td>
                             </tr>
-                        </tbody>`
-        main.appendChild(table);
+                        </tbody>`;
+        let divTable = document.createElement('div');
+        divTable.id = 'divTable'
+        let body = document.querySelector('body');
+        divTable.appendChild(table)
+        main.appendChild(divTable);
 
-        divBotoes(main);
+        divBotoes(divTable);
     }
 }
 
@@ -325,9 +257,8 @@ async function favoritos() {
     const produtos = await fetch('https://senac-back.azurewebsites.net/api/produtos');
     const todosProdutos = await produtos.json();
 
-    let linha;
     const main = document.getElementById('loja');
-    const mainTitle = document.getElementsByTagName("h1");
+    const mainTitle = document.querySelector("h1");
 
     if (fav.length == 0) {
         alert("Seu Favoritos está vazio.")
@@ -339,8 +270,11 @@ async function favoritos() {
         for (let c = 0; c < todosProdutos.length; c++) {
 
             if (fav[i].nome == todosProdutos[c].nome && fav[i].preco == todosProdutos[c].preco) {
-                mainTitle[0].innerHTML = "Favoritos";
                 limparLinha();
+                mainTitle.innerHTML = "Favoritos";
+                let h1 = document.createElement('h1');
+                h1.innerHTML = 'Favoritos';
+                main.appendChild(h1);
             }
         }
     }
@@ -353,77 +287,9 @@ async function favoritos() {
 
             if (fav[i].nome == todosProdutos[c].nome && fav[i].preco == todosProdutos[c].preco) {
 
-                if (count % 2 != 0) {
-                    linha = document.createElement('div');
-                    linha.classList.add('linha');
-                }
                 count++
 
-
-                let id = todosProdutos[c].id - 1;
-                let nome = todosProdutos[c].nome;
-                let preco = todosProdutos[c].preco;
-                let imagem = todosProdutos[c].imagem;
-                let descricaoProd = todosProdutos[i].descricao;
-
-                const produtoCard = document.createElement('div');
-                produtoCard.classList.add('produtos');
-
-                const produtoFoto = document.createElement('img');
-                produtoFoto.classList.add('imgProduto')
-                produtoFoto.src = imagem;
-                produtoFoto.id = `imagem${id}`
-
-                const titulo = document.createElement('p');
-                titulo.classList.add('titulo');
-                titulo.innerHTML = nome;
-                titulo.id = `nome${id}`
-
-                const estrela = document.createElement('p');
-                estrela.innerHTML = '★★★★★';
-
-                const valor = document.createElement('p');
-                valor.classList.add('preco');
-                valor.innerHTML = `R$ ${preco.toFixed(2)}`
-                valor.id = `preco${id}`
-                main.appendChild(linha);
-
-                const botoes = document.createElement('div');
-                botoes.classList.add('botoes');
-
-                const favoritos = document.createElement('img');
-                const btn1 = document.createElement('button');
-                btn1.classList.add('botao');
-                favoritos.src = 'assets/images/icons/estrela.png';
-                favoritos.id = `favoritos${id}`
-                btn1.appendChild(favoritos);
-                favicon(btn1, id, todosProdutos[id]);
-
-                const carrinho = document.createElement('img');
-                const btn2 = document.createElement('button');
-                btn2.classList.add('botao');
-                carrinho.src = 'assets/images/icons/shopping-cart.png';
-                carrinho.id = `carrinho${id}`
-                btn2.appendChild(carrinho);
-                buttonClick(btn2, id, todosProdutos[id]);
-
-
-                const compra = document.createElement('img');
-                const btn3 = document.createElement('button');
-                btn3.classList.add('botao');
-                compra.src = 'assets/images/icons/descricao-alternativa.png';
-                descricao(btn3, todosProdutos[i].nome, imagem, descricaoProd, preco, id, todosProdutos[i].id, todosProdutos);
-
-                btn3.appendChild(compra);
-                botoes.appendChild(btn1);
-                botoes.appendChild(btn2);
-                botoes.appendChild(btn3);
-
-                linha.appendChild(produtoCard);
-                produtoCard.appendChild(produtoFoto);
-                produtoCard.appendChild(titulo);
-                produtoCard.appendChild(valor);
-                produtoCard.appendChild(botoes);
+                somenteCard(todosProdutos[c], main, mainTitle, c)
             }
         }
     }
@@ -431,21 +297,18 @@ async function favoritos() {
     atualizarFav();
 }
 
-function descricao(btn, titulo, imagem, descricao, preco, id, todosProdutos) {
+function descricao(btn, titulo, imagem, descricao, preco, id) {
 
     //funcao para exibir a descricao do produto
     btn.addEventListener('click', () => {
 
-        let linha;
         const main = document.getElementById('loja');
-        const mainTitle = document.getElementsByTagName("h1");
+        const mainTitle = document.querySelector("h1");
 
-        mainTitle[0].innerHTML = titulo;
+       
         limparLinha();
-
-        linha = document.createElement('div');
-        linha.classList.add('linha');
-        main.appendChild(linha);
+        mainTitle.innerHTML = titulo;
+        main.appendChild(mainTitle)
 
         const produtoCard = document.createElement('div');
         produtoCard.classList.add('produtos');
@@ -462,27 +325,36 @@ function descricao(btn, titulo, imagem, descricao, preco, id, todosProdutos) {
         valor.classList.add('preco');
         valor.innerHTML = `R$ ${preco.toFixed(2)}`
         valor.id = `preco${id}`
-        main.appendChild(linha);
+        // main.appendChild(linha);
 
         const botoes = document.createElement('div');
         botoes.classList.add('botoes');
 
-        linha.appendChild(produtoCard);
+      
         produtoCard.appendChild(produtoFoto);
 
 
         produtoCard.appendChild(descricaoF);
         produtoCard.appendChild(botoes);
 
-        divBotoes(main);
+        let divTable = document.createElement('div');
+        divTable.appendChild(produtoCard)
+        main.appendChild(divTable);
+        divTable.id = 'divTable';
+        main.appendChild(divTable);
+
+        divBotoes(divTable);
+
+        window.scrollTo({
+            top: 0,
+            transition: '0.8s'
+        })
     });
 }
 
 function limparLinha() {
-    let limparLinha = document.getElementsByClassName('linha');
-    for (let i = 0; i < limparLinha.length; i++) {
-        limparLinha[i].innerHTML = "";
-    }
+    let limparLinha = document.getElementById('loja');
+    limparLinha.innerHTML = ""
 }
 
 
@@ -515,90 +387,14 @@ function divBotoes(main) {
 }
 
 function addProdutos(todosProdutos, main, mainTitle, a) {
-    // for (let i = 0; i < todosProdutos.length; i++) {
-        if (todosProdutos) {
-            console.log(true);
-        } else {
-            console.log(false);
-        }
 
-        if (todosProdutos.secao == mainTitle.id) {
+    if (todosProdutos.secao == mainTitle.id) {
 
-            // if (todosProdutos.id % 2 != 0) {
-            //     linha = document.createElement('div');
-            //     linha.classList.add('linha');
-            // }
+        somenteCard(todosProdutos, main, mainTitle, a)
 
-            let id = todosProdutos.id;
-            let nome = todosProdutos.nome;
-            let preco = todosProdutos.preco;
-            let imagem = todosProdutos.imagem;
-            let descricaoProd = todosProdutos.descricao;
-
-            const produtoCard = document.createElement('div');
-            produtoCard.classList.add('produtos');
-
-            const produtoFoto = document.createElement('img');
-            produtoFoto.classList.add('imgProduto')
-            produtoFoto.src = imagem;
-            produtoFoto.id = `imagem${id}`
-
-            const titulo = document.createElement('p');
-            titulo.classList.add('titulo');
-            titulo.innerHTML = nome;
-            titulo.id = `nome${id}`
-
-            const estrela = document.createElement('p');
-            estrela.innerHTML = '★★★★★';
-
-            const valor = document.createElement('p');
-            valor.classList.add('preco');
-            valor.innerHTML = `R$ ${preco.toFixed(2)}`
-            valor.id = `preco${id}`
-            // main.appendChild(linha);
-
-            const botoes = document.createElement('div');
-            botoes.classList.add('botoes');
-
-            const favoritos = document.createElement('img');
-            const btn1 = document.createElement('button');
-            btn1.classList.add('botao');
-            favoritos.src = 'assets/images/icons/estrela.png';
-            favoritos.id = `favoritos${id}`
-            btn1.appendChild(favoritos);
-            favicon(btn1, id, todosProdutos[id]);
-
-            const carrinho = document.createElement('img');
-            const btn2 = document.createElement('button');
-            btn2.classList.add('botao');
-            carrinho.src = 'assets/images/icons/shopping-cart.png';
-            carrinho.id = `carrinho${id}`
-            btn2.id = `botao${id}`
-            btn2.appendChild(carrinho);
-            buttonClick(btn2, id, todosProdutos[id]);
-
-
-            const compra = document.createElement('img');
-            const btn3 = document.createElement('button');
-            btn3.classList.add('botao');
-            btn3.id = `descricao${a}`;
-            compra.src = 'assets/images/icons/descricao-alternativa.png';
-            descricao(btn3, todosProdutos.nome, imagem, descricaoProd, preco, id, todosProdutos.id, todosProdutos);
-            btn3.appendChild(compra);
-
-            botoes.appendChild(btn2);
-            botoes.appendChild(btn1);
-            botoes.appendChild(btn3);
-
-            main.appendChild(produtoCard);
-            produtoCard.appendChild(produtoFoto);
-            produtoCard.appendChild(titulo);
-            produtoCard.appendChild(estrela)
-            produtoCard.appendChild(valor);
-            produtoCard.appendChild(botoes);
-        }
     }
-// }
+}
+
 
 // salvar no localStorage
 function salvarStorage() {
@@ -625,6 +421,75 @@ function atualizarFav() {
         }
     }
 };
+
+function somenteCard(todosProdutos, main, mainTitle, a) {
+    let id = todosProdutos.id;
+    let nome = todosProdutos.nome;
+    let preco = todosProdutos.preco;
+    let imagem = todosProdutos.imagem;
+    let descricaoProd = todosProdutos.descricao;
+
+    const produtoCard = document.createElement('div');
+    produtoCard.classList.add('produtos');
+
+    const produtoFoto = document.createElement('img');
+    produtoFoto.classList.add('imgProduto')
+    produtoFoto.src = imagem;
+    produtoFoto.id = `imagem${id}`
+
+    const titulo = document.createElement('p');
+    titulo.classList.add('titulo');
+    titulo.innerHTML = nome;
+    titulo.id = `nome${id}`
+
+    const estrela = document.createElement('p');
+    estrela.innerHTML = '★★★★★';
+
+    const valor = document.createElement('p');
+    valor.classList.add('preco');
+    valor.innerHTML = `R$ ${preco.toFixed(2)}`
+    valor.id = `preco${id}`
+
+    const botoes = document.createElement('div');
+    botoes.classList.add('botoes');
+
+    const favoritos = document.createElement('img');
+    const btn1 = document.createElement('button');
+    btn1.classList.add('botao');
+    favoritos.src = 'assets/images/icons/estrela.png';
+    favoritos.id = `favoritos${id}`
+    btn1.appendChild(favoritos);
+    favicon(btn1, id, todosProdutos);
+
+    const carrinho = document.createElement('img');
+    const btn2 = document.createElement('button');
+    btn2.classList.add('botao');
+    carrinho.src = 'assets/images/icons/shopping-cart.png';
+    carrinho.id = `carrinho${id}`
+    btn2.id = `botao${id}`
+    btn2.appendChild(carrinho);
+    buttonClick(btn2, id, todosProdutos);
+
+
+    const compra = document.createElement('img');
+    const btn3 = document.createElement('button');
+    btn3.classList.add('botao');
+    btn3.id = `descricao${a}`;
+    compra.src = 'assets/images/icons/descricao-alternativa.png';
+    descricao(btn3, todosProdutos.nome, imagem, descricaoProd, preco, id, todosProdutos.id);
+    btn3.appendChild(compra);
+
+    botoes.appendChild(btn2);
+    botoes.appendChild(btn1);
+    botoes.appendChild(btn3);
+
+    main.appendChild(produtoCard);
+    produtoCard.appendChild(produtoFoto);
+    produtoCard.appendChild(titulo);
+    produtoCard.appendChild(estrela)
+    produtoCard.appendChild(valor);
+    produtoCard.appendChild(botoes);
+}
 
 window.onload = requisicaoDB;
 
