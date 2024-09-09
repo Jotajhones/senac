@@ -16,11 +16,6 @@ main {
     justify-content: center;
     flex-wrap: wrap;
     margin: auto;
-    /* flex-direction: column;
-    columns: 2; */
-    /* position: relative; */
-
-
 }
 
 main h1 {
@@ -223,9 +218,6 @@ thead {
     justify-content: space-around;
     margin: 15px;
     width: 400px;
-    /* position: relative;
-    right: 50%;
-    top: 100px; */
 }
 
 .botoesCarrinho {
